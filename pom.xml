@@ -93,7 +93,7 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://repo.maven.apache.org/maven2/</url>
         </snapshotRepository>
     </distributionManagement>
 
