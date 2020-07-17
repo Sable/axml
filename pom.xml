@@ -49,6 +49,14 @@
         <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
     </properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+	</dependencies>
+
     <build>
         <finalName>axml</finalName>
         <sourceDirectory>src</sourceDirectory>
