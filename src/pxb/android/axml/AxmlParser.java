@@ -264,7 +264,7 @@ public class AxmlParser implements ResConst {
                 event = TEXT;
                 break;
             default:
-                throw new RuntimeException();
+                throw new RuntimeException("Unsupported type: " + type);
             }
             in.position(p + size);
             return event;

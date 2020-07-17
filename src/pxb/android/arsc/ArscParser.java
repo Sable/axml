@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pxb.android.ResConst;
 import pxb.android.StringItems;
 
@@ -65,6 +68,9 @@ import pxb.android.StringItems;
  * 
  */
 public class ArscParser implements ResConst {
+
+	private static final Logger logger = LoggerFactory.getLogger(ArscParser.class);
+	
     /* pkg */class Chunk {
 
         public final int headSize;
@@ -81,11 +87,9 @@ public class ArscParser implements ResConst {
         }
     }
 
-    private static final boolean DEBUG = false;
-
     private static void D(String fmt, Object... args) {
-        if (DEBUG) {
-            System.out.println(String.format(fmt, args));
+        if (logger.isTraceEnabled()) {
+            logger.trace(String.format(fmt, args));
         }
     }
 
@@ -128,7 +132,7 @@ public class ArscParser implements ResConst {
             switch (chunk.type) {
             case RES_STRING_POOL_TYPE:
                 strings = StringItems.read(in);
-                if (DEBUG) {
+                if (logger.isTraceEnabled()) {
                     for (int i = 0; i < strings.length; i++) {
                         D("STR [%08x] %s", i, strings[i]);
                     }
@@ -260,7 +264,7 @@ public class ArscParser implements ResConst {
                 throw new RuntimeException();
             }
             keyNamesX = StringItems.read(in);
-            if (DEBUG) {
+            if (logger.isTraceEnabled()) {
                 for (int i = 0; i < keyNamesX.length; i++) {
                     D("STR [%08x] %s", i, keyNamesX[i]);
                 }

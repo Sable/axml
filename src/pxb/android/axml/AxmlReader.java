@@ -26,12 +26,18 @@ import static pxb.android.axml.AxmlParser.TEXT;
 import java.io.IOException;
 import java.util.Stack;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * a class to read android axml
  * 
  * @author <a href="mailto:pxb1988@gmail.com">Panxiaobo</a>
  */
 public class AxmlReader {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AxmlReader.class);
+	
 	public static final NodeVisitor EMPTY_VISITOR = new NodeVisitor() {
 
 		@Override
@@ -85,7 +91,7 @@ public class AxmlReader {
 			case END_FILE:
 				return;
 			default:
-				System.err.println("AxmlReader: Unsupported tag: " + type);
+				logger.warn("Unsupported tag: {}", type);
 			}
 		}
 	}
