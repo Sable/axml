@@ -234,6 +234,8 @@ public class AxmlWriter extends AxmlVisitor {
                     out.putInt(((StringItem) attr.value).index);
                 } else if (v instanceof Boolean) {
                     out.putInt(Boolean.TRUE.equals(v) ? -1 : 0);
+                } else if (v instanceof Float) {
+                  out.putInt(Float.floatToIntBits((float) v));
                 } else {
                     out.putInt((Integer) attr.value);
                 }
