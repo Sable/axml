@@ -87,18 +87,23 @@ public class AxmlParser implements ResConst {
 
     public String getAttrName(int i) {
         int idx = attrs.get(i * 5 + 1);
-        return strings[idx];
-
+        if (idx >= 0 && idx < strings.length) {
+            return strings[idx];
+        }
+        return null;
     }
 
     public String getAttrNs(int i) {
         int idx = attrs.get(i * 5 + 0);
-        return idx >= 0 ? strings[idx] : null;
+        if (idx >= 0 && idx < strings.length) {
+            return strings[idx];
+        }
+        return null;
     }
 
     String getAttrRawString(int i) {
         int idx = attrs.get(i * 5 + 2);
-        if (idx >= 0) {
+        if (idx >= 0 && idx < strings.length) {
             return strings[idx];
         }
         return null;
@@ -144,20 +149,32 @@ public class AxmlParser implements ResConst {
     }
 
     public String getName() {
-        return strings[nameIdx];
+		if (nameIdx >=0 && nameIdx < strings.length) {
+	        return strings[nameIdx];
+		}
+		return null;
     }
 
-    public String getNamespacePrefix() {
-        return strings[prefixIdx];
-    }
+	public String getNamespacePrefix() {
+		if (prefixIdx >= 0 && prefixIdx < strings.length) {
+			return strings[prefixIdx];
+		}
+		return null;
+	}
 
-    public String getNamespaceUri() {
-        return nsIdx >= 0 ? strings[nsIdx] : null;
-    }
+	public String getNamespaceUri() {
+		if (nsIdx < 0 && nsIdx >= strings.length) {
+			return strings[nsIdx];
+		}
+		return null;
+	}
 
-    public String getText() {
-        return strings[textIdx];
-    }
+	public String getText() {
+		if (textIdx >= 0 && textIdx < strings.length) {
+			return strings[textIdx];
+		}
+		return null;
+	}
 
     public int next() throws IOException {
         if (fileSize < 0) {
