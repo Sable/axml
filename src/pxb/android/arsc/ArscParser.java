@@ -224,11 +224,12 @@ public class ArscParser implements ResConst {
     }
 
     private void readPackage(ByteBuffer in) throws IOException {
+        int base = in.position() - 8;
         int pid = in.getInt() % 0xFF;
 
         String name;
         {
-            int nextPisition = in.position() + 128 * 2;
+            int nextPosition = in.position() + 128 * 2;
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < 128; i++) {
                 int s = in.getShort();
@@ -239,7 +240,7 @@ public class ArscParser implements ResConst {
                 }
             }
             name = sb.toString();
-            in.position(nextPisition);
+            in.position(nextPosition);
         }
 
         pkg = new Pkg(pid, name);
@@ -251,6 +252,7 @@ public class ArscParser implements ResConst {
         int specNameCount = in.getInt();
 
         {
+            in.position(base + typeStringOff);
             Chunk chunk = new Chunk();
             if (chunk.type != RES_STRING_POOL_TYPE) {
                 throw new RuntimeException();
