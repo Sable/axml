@@ -36,6 +36,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
 
+import pxb.android.Item;
 import pxb.android.StringItem;
 import pxb.android.StringItems;
 
@@ -230,12 +231,12 @@ public class AxmlWriter extends AxmlVisitor {
                 out.putInt(attr.raw != null ? attr.raw.index : -1);
                 out.putInt((attr.type << 24) | 0x000008);
                 Object v = attr.value;
-                if (v instanceof StringItem) {
-                    out.putInt(((StringItem) attr.value).index);
+                if (v instanceof Item) {
+                    ((Item) attr.value).writeout(out);
                 } else if (v instanceof Boolean) {
                     out.putInt(Boolean.TRUE.equals(v) ? -1 : 0);
                 } else if (v instanceof Float) {
-                  out.putInt(Float.floatToIntBits((float) v));
+                    out.putInt(Float.floatToIntBits((float) v));
                 } else {
                     out.putInt((Integer) attr.value);
                 }

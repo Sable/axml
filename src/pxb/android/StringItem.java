@@ -15,7 +15,9 @@
  */
 package pxb.android;
 
-public class StringItem {
+import java.nio.ByteBuffer;
+
+public class StringItem implements Item {
     public String data;
     public int dataOffset;
     public int index;
@@ -56,6 +58,10 @@ public class StringItem {
 
     public String toString() {
         return String.format("S%04d %s", index, data);
+    }
+
+    public void writeout(ByteBuffer out) {
+        out.putInt(index);
     }
 
 }
