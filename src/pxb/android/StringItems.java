@@ -87,7 +87,7 @@ public class StringItems extends ArrayList<StringItem> {
 
 	public void prepare() throws IOException {
 		for (StringItem s : this) {
-			if (s.data.length() > 0x7FFF) {
+			if (s.data != null && s.data.length() > 0x7FFF) {
 				useUTF8 = false;
 			}
 		}
