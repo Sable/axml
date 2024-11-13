@@ -163,7 +163,7 @@ public class AxmlParser implements ResConst {
 	}
 
 	public String getNamespaceUri() {
-		if (nsIdx < 0 && nsIdx < strings.length) {
+		if (nsIdx >= 0 && nsIdx < strings.length) {
 			return strings[nsIdx];
 		}
 		return null;
