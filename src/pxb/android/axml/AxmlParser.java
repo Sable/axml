@@ -180,7 +180,7 @@ public class AxmlParser implements ResConst {
         if (fileSize < 0) {
             int type = in.getInt() & 0xFFFF;
             if (type != RES_XML_TYPE) {
-                throw new RuntimeException();
+                throw new RuntimeException(String.format("Resource type was 0x%04X instead of XML_TYPE (0x0003)", type));
             }
             fileSize = in.getInt();
             return START_FILE;
